@@ -1,0 +1,18 @@
+<h1>Login</h1>
+
+<div class="divwidth">
+  <br />
+  <input id="txtUserName" placeholder="Enter Username" type="text" class="form-control" [(ngModel)]="username" />
+  <br />
+  <input id="txtPassword" placeholder="Enter Password" type="text" class="form-control" [(ngModel)]="password" />
+  <br />
+
+  <div align="right">
+    <label class="btn-primary divwidth" (click)="OnLogin($event)" ngbButtonLabel>
+      LogIn
+    </label>
+    <br/>
+    
+  </div>
+</div> 
+<strong><label style="color:red">{{error}} </label></strong>

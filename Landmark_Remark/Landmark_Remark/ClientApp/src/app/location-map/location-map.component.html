@@ -1,0 +1,40 @@
+<h1>{{ title }}</h1>
+
+<!-- this creates a google map on the page with the given lat/lng from -->
+<!-- the component as the initial center of the map: -->
+<p></p>
+<input placeholder="Type UserName or Comment to filter" [(ngModel)]="searchToken" />
+<p></p>
+<agm-map [latitude]="lat" [longitude]="lng" (mapClick)="OnChoseLocation($event)">
+  <agm-marker *ngFor="let loc of locations| filterPipe: searchToken" [label]="loc.label" [latitude]="loc.lat" [longitude]="loc.lng" [iconUrl]="icon">
+    <agm-info-window>
+      <!--<strong>Title: {{loc.title}}</strong><br><br>-->
+      <strong>User: </strong>{{loc.userName}} <br><br>
+      <strong>Comment: </strong>{{loc.comment}}
+    </agm-info-window>
+  </agm-marker>
+</agm-map>
+
+
+<p *ngIf="!locations"><em>Loading...</em></p>
+
+<table class='table table-striped' *ngIf="locations">
+  <thead>
+    <tr>
+      <th>UserName</th>
+      
+      <th>Long</th>
+      <th>Lat</th>
+      <th>Comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let loc of locations| filterPipe: searchToken">
+      <td>{{ loc.userName }}</td>
+     
+      <td>{{ loc.lng }}</td>
+      <td>{{ loc.lat }}</td>
+      <td>{{ loc.comment }}</td>
+    </tr>
+  </tbody>
+</table>
